@@ -97,8 +97,8 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
             let index = viewControllers.indexOfObject(viewController)
             if index == 0 {
                 return nil
-            } else {
-                return viewControllers[index - 1] as! UIViewController
+            } else if let viewController = viewControllers[index - 1] as? UIViewController {
+                return viewController
             }
         }
         
@@ -110,8 +110,8 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
             let index = viewControllers.indexOfObject(viewController)
             if index == viewControllers.count - 1 {
                 return nil
-            } else {
-                return viewControllers[index + 1] as! UIViewController
+            } else if let viewController = viewControllers[index + 1] as? UIViewController {
+                return viewController
             }
         }
         

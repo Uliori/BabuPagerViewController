@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/babukuma/BabuPagerViewController.git", :tag => "0.0.1" }
 
   # ――― Source Code ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  
-  s.source_files  = "Classes/**/*.swift"
+  s.source_files  = "Classes/*.swift"
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.frameworks = "Foundation", "UIKit"
