@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		846063621B0F87E300B761F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063611B0F87E300B761F9 /* AppDelegate.swift */; };
-		846063641B0F87E300B761F9 /* BabuPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063631B0F87E300B761F9 /* BabuPagerViewController.swift */; };
 		846063671B0F87E300B761F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846063651B0F87E300B761F9 /* Main.storyboard */; };
 		846063691B0F87E300B761F9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 846063681B0F87E300B761F9 /* Images.xcassets */; };
 		8460636C1B0F87E300B761F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8460636A1B0F87E300B761F9 /* LaunchScreen.xib */; };
 		846063781B0F87E300B761F9 /* BabuPagerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063771B0F87E300B761F9 /* BabuPagerViewControllerTests.swift */; };
 		846063821B0F96C300B761F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063811B0F96C300B761F9 /* ViewController.swift */; };
+		846063851B10F4DB00B761F9 /* BabuPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063841B10F4DB00B761F9 /* BabuPagerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,6 @@
 		8460635C1B0F87E300B761F9 /* BabuPagerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabuPagerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846063601B0F87E300B761F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846063611B0F87E300B761F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		846063631B0F87E300B761F9 /* BabuPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabuPagerViewController.swift; sourceTree = "<group>"; };
 		846063661B0F87E300B761F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		846063681B0F87E300B761F9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8460636B1B0F87E300B761F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		846063761B0F87E300B761F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		846063771B0F87E300B761F9 /* BabuPagerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabuPagerViewControllerTests.swift; sourceTree = "<group>"; };
 		846063811B0F96C300B761F9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		846063841B10F4DB00B761F9 /* BabuPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabuPagerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +61,7 @@
 		846063531B0F87E300B761F9 = {
 			isa = PBXGroup;
 			children = (
+				846063831B10F4DB00B761F9 /* Classes */,
 				8460635E1B0F87E300B761F9 /* BabuPagerViewController */,
 				846063741B0F87E300B761F9 /* BabuPagerViewControllerTests */,
 				8460635D1B0F87E300B761F9 /* Products */,
@@ -80,7 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				846063611B0F87E300B761F9 /* AppDelegate.swift */,
-				846063631B0F87E300B761F9 /* BabuPagerViewController.swift */,
 				846063811B0F96C300B761F9 /* ViewController.swift */,
 				846063651B0F87E300B761F9 /* Main.storyboard */,
 				846063681B0F87E300B761F9 /* Images.xcassets */,
@@ -113,6 +113,14 @@
 				846063761B0F87E300B761F9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		846063831B10F4DB00B761F9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				846063841B10F4DB00B761F9 /* BabuPagerViewController.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846063851B10F4DB00B761F9 /* BabuPagerViewController.swift in Sources */,
 				846063821B0F96C300B761F9 /* ViewController.swift in Sources */,
-				846063641B0F87E300B761F9 /* BabuPagerViewController.swift in Sources */,
 				846063621B0F87E300B761F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
