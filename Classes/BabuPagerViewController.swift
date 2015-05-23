@@ -41,7 +41,8 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     
     // UIPageViewController
     var pageViewController:UIPageViewController!
-    var viewControllers:NSArray? {
+    
+    var viewControllers:[UIViewController]? {
         didSet {
             if let viewControllers = self.viewControllers {
                 self.pageViewController.setViewControllers(
@@ -94,11 +95,13 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     // MARK: - UIPageViewControllerDataSource
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self.viewControllers {
-            let index = viewControllers.indexOfObject(viewController)
-            if index == 0 {
-                return nil
-            } else if let viewController = viewControllers[index - 1] as? UIViewController {
-                return viewController
+            //let index = find(viewControllers, viewController) //anyArrays.indexOfObject(viewController)
+            if let index = find(viewControllers, viewController) {
+                if index == 0 {
+                    return nil
+                } else {
+                    return viewControllers[index - 1]
+                }
             }
         }
         
@@ -107,11 +110,12 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self.viewControllers {
-            let index = viewControllers.indexOfObject(viewController)
-            if index == viewControllers.count - 1 {
-                return nil
-            } else if let viewController = viewControllers[index + 1] as? UIViewController {
-                return viewController
+            if let index = find(viewControllers, viewController) {
+                if index == viewControllers.count - 1 {
+                    return nil
+                } else {
+                    return viewControllers[index + 1]
+                }
             }
         }
         
@@ -131,8 +135,11 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     // MARK: - UIPageViewControllerDelegate
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if let viewControllers = self.viewControllers {
-            let currentIndex = viewControllers.indexOfObject(pageViewController.viewControllers[0])
-            self.animateTabs(currentIndex)
+            if let pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
+                if let currentIndex = find(viewControllers, pageViewControllers[0]) {
+                    self.animateTabs(currentIndex)
+                }
+            }
         }
     }
     
@@ -199,25 +206,28 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     
     func handleTap(sender: UITapGestureRecognizer) {
         if let viewControllers = self.viewControllers, tappedView = sender.view {
-            let index = viewControllers.indexOfObject(self.pageViewController.viewControllers[0])
             let tappedIndex = tappedView.tag - 1
             
-            if index > tappedIndex {
-                self.pageViewController.setViewControllers(
-                    [viewControllers[tappedIndex]],
-                    direction: .Reverse,
-                    animated: true,
-                    completion: { (finished) in
-                        self.animateTabs(tappedIndex)
-                })
-            } else if index < tappedIndex {
-                self.pageViewController.setViewControllers(
-                    [viewControllers[tappedIndex]],
-                    direction: .Forward,
-                    animated: true,
-                    completion: { (finished) in
-                        self.animateTabs(tappedIndex)
-                })
+            if let pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
+                if let index = find(viewControllers, pageViewControllers[0]) {
+                    if index > tappedIndex {
+                        self.pageViewController.setViewControllers(
+                            [viewControllers[tappedIndex]],
+                            direction: .Reverse,
+                            animated: true,
+                            completion: { (finished) in
+                                self.animateTabs(tappedIndex)
+                        })
+                    } else if index < tappedIndex {
+                        self.pageViewController.setViewControllers(
+                            [viewControllers[tappedIndex]],
+                            direction: .Forward,
+                            animated: true,
+                            completion: { (finished) in
+                                self.animateTabs(tappedIndex)
+                        })
+                    }
+                }
             }
         }
     }

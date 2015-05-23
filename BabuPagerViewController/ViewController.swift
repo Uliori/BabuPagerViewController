@@ -18,11 +18,18 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
 
         self.dataSource = self
         
-        self.viewControllers = [
-            self.storyboard!.instantiateViewControllerWithIdentifier("page1"),
-            self.storyboard!.instantiateViewControllerWithIdentifier("page2"),
-            self.storyboard!.instantiateViewControllerWithIdentifier("page3")
-        ]
+        var viewContollers:[UIViewController] = []
+        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page1") as? UIViewController {
+            viewContollers.append(vc)
+        }
+        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page2") as? UIViewController {
+            viewContollers.append(vc)
+        }
+        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page3") as? UIViewController {
+            viewContollers.append(vc)
+        }
+        
+        self.viewControllers = viewContollers
     }
 
     override func didReceiveMemoryWarning() {
