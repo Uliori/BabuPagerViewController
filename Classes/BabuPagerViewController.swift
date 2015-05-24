@@ -18,7 +18,7 @@ public protocol BabuPagerViewControllerDataSource {
 @IBDesignable
 public class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     // BabuPagerViewControllerDataSource
-    var dataSource:BabuPagerViewControllerDataSource? {
+    public var dataSource:BabuPagerViewControllerDataSource? {
         didSet {
             // make tabs
             self.makeTabs()
@@ -26,23 +26,23 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     }
     
     // Header
-    var headerView:UIView?
-    @IBInspectable var headerHeight: CGFloat = 70.0
-    @IBInspectable var headerBackground: UIColor = UIColor.lightGrayColor()
+    public var headerView:UIView?
+    @IBInspectable public var headerHeight: CGFloat = 70.0
+    @IBInspectable public var headerBackground: UIColor = UIColor.lightGrayColor()
     
     // Tab
-    @IBInspectable var tabHeight: CGFloat = 44.0
-    @IBInspectable var tabBackground: UIColor = UIColor.lightGrayColor()
-    @IBInspectable var tabActivedTextColor: UIColor = UIColor.blackColor()
-    @IBInspectable var tabInactivedTextColor: UIColor = UIColor.darkGrayColor()
+    @IBInspectable public var tabHeight: CGFloat = 44.0
+    @IBInspectable public var tabBackground: UIColor = UIColor.lightGrayColor()
+    @IBInspectable public var tabActivedTextColor: UIColor = UIColor.blackColor()
+    @IBInspectable public var tabInactivedTextColor: UIColor = UIColor.darkGrayColor()
     private var _tabWidth:CGFloat!
     private var _tabView:UIView?
     private var _tabs:[UILabel]?
     
     // UIPageViewController
-    var pageViewController:UIPageViewController!
+    public var pageViewController:UIPageViewController!
     
-    var viewControllers:[UIViewController]? {
+    public var viewControllers:[UIViewController]? {
         didSet {
             if let viewControllers = self.viewControllers {
                 self.pageViewController.setViewControllers(
