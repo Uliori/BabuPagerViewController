@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol BabuPagerViewControllerDataSource {
+public protocol BabuPagerViewControllerDataSource {
     // Asks the data source to return the number of tabs in page view
     func numberOfTabs() -> Int
     // Ask the data source for the title of the tab
@@ -16,7 +16,7 @@ protocol BabuPagerViewControllerDataSource {
 }
 
 @IBDesignable
-class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+public class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     // BabuPagerViewControllerDataSource
     var dataSource:BabuPagerViewControllerDataSource? {
         didSet {
@@ -54,7 +54,7 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
         }
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         // Header
@@ -86,14 +86,14 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
         self.view.gestureRecognizers = self.pageViewController.gestureRecognizers
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
 
     // MARK: - UIPageViewControllerDataSource
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self.viewControllers {
             //let index = find(viewControllers, viewController) //anyArrays.indexOfObject(viewController)
             if let index = find(viewControllers, viewController) {
@@ -108,7 +108,7 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
         return nil
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self.viewControllers {
             if let index = find(viewControllers, viewController) {
                 if index == viewControllers.count - 1 {
@@ -123,17 +123,17 @@ class BabuPagerViewController: UIViewController, UIPageViewControllerDataSource,
     }
     
     // for hiding UIPageControl
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
     // for hiding UIPageControl
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
     // MARK: - UIPageViewControllerDelegate
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if let viewControllers = self.viewControllers {
             if let pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
                 if let currentIndex = find(viewControllers, pageViewControllers[0]) {
