@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   s.summary      = "A horizonal scroll UIPageViewController with tabs."
   s.homepage     = "https://github.com/babukuma/BabuPagerViewController"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.screenshots  = "https://github.com/babukuma/BabuPagerViewController/blob/master/screenshots_1.gif"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.license      = "MIT"
