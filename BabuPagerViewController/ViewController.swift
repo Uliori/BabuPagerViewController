@@ -11,25 +11,27 @@ import UIKit
 class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource {
     //var viewControllers:[AnyObject]!
     
-    var titles = ["page1", "page2", "page3"]
+    var titles = ["page1", "page2", "page3", "page4", "page5"]
+    var bgColors = [
+        UIColor.yellowColor(),
+        UIColor.redColor(),
+        UIColor.brownColor(),
+        UIColor.greenColor(),
+        UIColor.cyanColor()
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.dataSource = self
         
-        var viewContollers:[UIViewController] = []
-        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page1") as? UIViewController {
-            viewContollers.append(vc)
-        }
-        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page2") as? UIViewController {
-            viewContollers.append(vc)
-        }
-        if let vc = self.storyboard!.instantiateViewControllerWithIdentifier("page3") as? UIViewController {
-            viewContollers.append(vc)
-        }
-        
-        self.viewControllers = viewContollers
+        // Header
+        let headerLabel = UILabel(frame: CGRectMake(0, 20, CGRectGetWidth(self.headerView!.frame), CGRectGetHeight(self.headerView!.frame)))
+        headerLabel.text = "BabuPagerViewController"
+        headerLabel.textAlignment = .Center
+        headerLabel.textColor = UIColor.blackColor()
+        headerLabel.font = UIFont.boldSystemFontOfSize(UIFont.labelFontSize() + 4)
+        self.headerView?.addSubview(headerLabel)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,11 +51,17 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
     */
     
     // MARK: - BabuPagerViewControllerDataSource
-    func numberOfTabs() -> Int {
+    func numberOfPagerItem() -> Int {
         return self.titles.count
     }
     
     func titleForTab(index: Int) -> String {
         return self.titles[index]
+    }
+    
+    func pagerItemViewController(index: Int) -> UIViewController {
+        var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") as! UIViewController
+        viewController.view.backgroundColor = self.bgColors[index]
+        return viewController
     }
 }
