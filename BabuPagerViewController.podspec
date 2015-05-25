@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.summary      = "A horizonal scroll UIPageViewController with tabs."
   s.homepage     = "https://github.com/babukuma/BabuPagerViewController"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-  s.screenshots  = "https://github.com/babukuma/BabuPagerViewController/blob/master/screenshots_1.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/babukuma/BabuPagerViewController/master/screenshots_1.gif"
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.license      = "MIT"
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/babukuma/BabuPagerViewController.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/babukuma/BabuPagerViewController.git", :tag => "0.0.2" }
 
   # ――― Source Code ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  
   s.source_files  = "Classes/*.swift"
