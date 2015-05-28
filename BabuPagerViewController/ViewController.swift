@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource {
+class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource, BabuPagerViewControllerDelegate {
     //var viewControllers:[AnyObject]!
     
     var titles = ["page1", "page2", "page3", "page4", "page5"]
@@ -24,14 +24,7 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
         super.viewDidLoad()
 
         self.dataSource = self
-        
-        // Header
-        let headerLabel = UILabel(frame: CGRectMake(0, 20, CGRectGetWidth(self.headerView!.frame), CGRectGetHeight(self.headerView!.frame)))
-        headerLabel.text = "BabuPagerViewController"
-        headerLabel.textAlignment = .Center
-        headerLabel.textColor = UIColor.blackColor()
-        headerLabel.font = UIFont.boldSystemFontOfSize(UIFont.labelFontSize() + 4)
-        self.headerView?.addSubview(headerLabel)
+        self.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,5 +56,14 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
         var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") as! UIViewController
         viewController.view.backgroundColor = self.bgColors[index]
         return viewController
+    }
+    
+    // MARK: - BabuPagerViewControllerDelegate
+    func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject) {
+        println("willTransitionToViewController")
+    }
+    
+    func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool) {
+        println("didFinishAnimating")
     }
 }
