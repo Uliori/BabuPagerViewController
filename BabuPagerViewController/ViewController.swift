@@ -11,13 +11,20 @@ import UIKit
 class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource, BabuPagerViewControllerDelegate {
     //var viewControllers:[AnyObject]!
     
-    var titles = ["page1", "page2", "page3", "page4", "page5"]
-    var bgColors = [
-        UIColor.yellowColor(),
+    var titles = ["red", "blue", "green", "yellow", "cyan"]
+    var headerBgColors = [
         UIColor.redColor(),
-        UIColor.brownColor(),
+        UIColor.blueColor(),
         UIColor.greenColor(),
+        UIColor.yellowColor(),
         UIColor.cyanColor()
+    ]
+    var tabBgColor = [
+        UIColor(red: 193/255, green: 0/255, blue: 2/255, alpha: 1.0),
+        UIColor(red: 85/255, green: 81/255, blue: 255/255, alpha: 1.0),
+        UIColor(red: 0/255, green: 199/255, blue: 0/255, alpha: 1.0),
+        UIColor(red: 222/255, green: 222/255, blue: 0/255, alpha: 1.0),
+        UIColor(red: 0/255, green: 211/255, blue: 211/255, alpha: 1.0)
     ]
 
     override func viewDidLoad() {
@@ -25,6 +32,9 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
 
         self.dataSource = self
         self.delegate = self
+        
+        self.headerView?.backgroundColor = self.headerBgColors[0]
+        self.tabView?.backgroundColor = self.tabBgColor[0]
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +64,8 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
     
     func pagerItemViewController(index: Int) -> UIViewController {
         var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") as! UIViewController
-        viewController.view.backgroundColor = self.bgColors[index]
+        println("viewController=\(viewController)")
+        viewController.title = "Page \(index + 1)"
         return viewController
     }
     
@@ -65,5 +76,8 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
     
     func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool) {
         println("didFinishAnimating")
+        let pageIndex = pagerViewController.currentIndex()
+        self.headerView?.backgroundColor = self.headerBgColors[pageIndex]
+        self.tabView?.backgroundColor = self.tabBgColor[pageIndex]
     }
 }

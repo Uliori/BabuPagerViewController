@@ -14,6 +14,7 @@
 		846063781B0F87E300B761F9 /* BabuPagerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063771B0F87E300B761F9 /* BabuPagerViewControllerTests.swift */; };
 		846063821B0F96C300B761F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063811B0F96C300B761F9 /* ViewController.swift */; };
 		846063851B10F4DB00B761F9 /* BabuPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846063841B10F4DB00B761F9 /* BabuPagerViewController.swift */; };
+		84F90A461B18287100C60E30 /* PageItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F90A451B18287100C60E30 /* PageItemController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		846063771B0F87E300B761F9 /* BabuPagerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabuPagerViewControllerTests.swift; sourceTree = "<group>"; };
 		846063811B0F96C300B761F9 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		846063841B10F4DB00B761F9 /* BabuPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BabuPagerViewController.swift; sourceTree = "<group>"; };
+		84F90A451B18287100C60E30 /* PageItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageItemController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				846063611B0F87E300B761F9 /* AppDelegate.swift */,
 				846063811B0F96C300B761F9 /* ViewController.swift */,
+				84F90A451B18287100C60E30 /* PageItemController.swift */,
 				846063651B0F87E300B761F9 /* Main.storyboard */,
 				846063681B0F87E300B761F9 /* Images.xcassets */,
 				8460636A1B0F87E300B761F9 /* LaunchScreen.xib */,
@@ -226,6 +229,7 @@
 				846063851B10F4DB00B761F9 /* BabuPagerViewController.swift in Sources */,
 				846063821B0F96C300B761F9 /* ViewController.swift in Sources */,
 				846063621B0F87E300B761F9 /* AppDelegate.swift in Sources */,
+				84F90A461B18287100C60E30 /* PageItemController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +425,7 @@
 				8460637D1B0F87E300B761F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8460637E1B0F87E300B761F9 /* Build configuration list for PBXNativeTarget "BabuPagerViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +434,7 @@
 				846063801B0F87E300B761F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
