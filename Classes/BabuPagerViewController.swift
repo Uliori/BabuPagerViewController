@@ -20,8 +20,9 @@ public protocol BabuPagerViewControllerDataSource {
 
 // MARK: - BabuPagerViewControllerDelegate
 public protocol BabuPagerViewControllerDelegate {
-    /// Asks the data source to return the number of items in page view
+    /// Called before a gesture-driven transition begins.
     func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject)
+    /// Called after a gesture-driven transition completes.
     func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool)
 }
 
@@ -308,6 +309,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         }
     }
     
+    /// return index of current page
     public func currentIndex() -> Int {
         if let viewControllers = self._viewControllers, pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
             if let index = find(viewControllers, pageViewControllers[0]) {
