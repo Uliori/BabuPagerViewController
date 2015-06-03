@@ -75,6 +75,7 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="headerBackground">
                             <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="tabIsBottom" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="headerView" destination="pOA-MK-Mfw" id="Yeh-6y-AdH"/>

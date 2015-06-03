@@ -12,17 +12,17 @@ import UIKit
 public protocol BabuPagerViewControllerDataSource {
     /// Asks the data source to return the number of items in page view
     func numberOfPagerItem() -> Int
-    /// Ask the pager item
+    /// Asks the pager item
     func pagerItemViewController(index: Int) -> UIViewController
-    /// Ask the data source for the title of the tab
+    /// Asks the data source for the title of the tab
     func titleForTab(index: Int) -> String
 }
 
 // MARK: - BabuPagerViewControllerDelegate
 public protocol BabuPagerViewControllerDelegate {
-    /// Called before a gesture-driven transition begins.
+    /// Calls before a gesture-driven transition begins.
     func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject)
-    /// Called after a gesture-driven transition completes.
+    /// Calls after a gesture-driven transition completes.
     func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool)
 }
 
@@ -50,23 +50,23 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     @IBOutlet public var tabView:UIView?
     /// labels of tabs
     public var tabLabels:[UILabel]?
-    /// if true, the page items are between header and tab
+    /// if true, the page items are between the header and the tab
     @IBInspectable public var tabIsBottom:Bool = false
-    /// text color of actived tab view
-    @IBInspectable public var tabActivedTextColor: UIColor = UIColor.blackColor()
-    /// text color of inactived tab view
-    @IBInspectable public var tabInactivedTextColor: UIColor = UIColor.darkGrayColor()
+    /// text color of activated tab view
+    @IBInspectable public var tabActivatedTextColor: UIColor = UIColor.blackColor()
+    /// text color of inactivated tab view
+    @IBInspectable public var tabInactivatedTextColor: UIColor = UIColor.darkGrayColor()
     /// font size of tab view
     @IBInspectable public var tabFontSize: CGFloat = UIFont.labelFontSize()
-    /// use bold text if actived tab view
-    @IBInspectable public var tabUseActivedBoldText: Bool = true
+    /// use bold text if activated tab view
+    @IBInspectable public var tabUseActivatedBoldText: Bool = true
     // height of tab view
     private var tabHeight:CGFloat = 0
     
-    // font of actived tab view
-    private var _tabActivedFont: UIFont!
-    // font of inactived tab view
-    private var _tabInactivedFont: UIFont!
+    // font of activated tab view
+    private var _tabActivatedFont: UIFont!
+    // font of inactivated tab view
+    private var _tabInactivatedFont: UIFont!
     private var _tabWidth:CGFloat!
     
     // MARK: - UIPageViewController
@@ -91,12 +91,12 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         if let tabView = self.tabView {
             self.tabHeight = CGRectGetHeight(tabView.frame)
             
-            if self.tabUseActivedBoldText {
-                self._tabActivedFont = UIFont.boldSystemFontOfSize(self.tabFontSize)
+            if self.tabUseActivatedBoldText {
+                self._tabActivatedFont = UIFont.boldSystemFontOfSize(self.tabFontSize)
             } else {
-                self._tabActivedFont = UIFont.systemFontOfSize(self.tabFontSize)
+                self._tabActivatedFont = UIFont.systemFontOfSize(self.tabFontSize)
             }
-            self._tabInactivedFont = UIFont.systemFontOfSize(self.tabFontSize)
+            self._tabInactivatedFont = UIFont.systemFontOfSize(self.tabFontSize)
             
             self._tabWidth = self.view.frame.width / 3
         }
@@ -159,12 +159,12 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         return nil
     }
     
-    // for hiding UIPageControl
+    // to hide UIPageControl
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
-    // for hiding UIPageControl
+    // to hide UIPageControl
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
@@ -215,11 +215,11 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
                 let tab = UILabel(frame: frame)
                 tab.text = self.dataSource.titleForTab(index - 1)
                 if index == 1 {
-                    tab.font = self._tabActivedFont
-                    tab.textColor = self.tabActivedTextColor
+                    tab.font = self._tabActivatedFont
+                    tab.textColor = self.tabActivatedTextColor
                 } else {
-                    tab.font = self._tabInactivedFont
-                    tab.textColor = self.tabInactivedTextColor
+                    tab.font = self._tabInactivatedFont
+                    tab.textColor = self.tabInactivatedTextColor
                 }
                 tab.textAlignment = .Center
                 tab.backgroundColor = UIColor.clearColor()
@@ -256,11 +256,11 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
                 var index = 0
                 for tab:UILabel in tabs {
                     if index == currentIndex {
-                        tab.font = self._tabActivedFont
-                        tab.textColor = self.tabActivedTextColor
+                        tab.font = self._tabActivatedFont
+                        tab.textColor = self.tabActivatedTextColor
                     } else {
-                        tab.font = self._tabInactivedFont
-                        tab.textColor = self.tabInactivedTextColor
+                        tab.font = self._tabInactivatedFont
+                        tab.textColor = self.tabInactivatedTextColor
                     }
                     
                     index++

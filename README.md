@@ -1,6 +1,6 @@
 # BabuPagerViewController
 
-A horizonal scroll UIPageViewController with tabs.
+A horizontal scroll UIPageViewController with tabs.
 
 ## Screenshots
 
@@ -65,13 +65,13 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
 }
 ```
 
-#### 2. Connect to headerView on the Storyboard if you need
+#### 2. Connect to headerView on the Storyboard if you need to
 ![headerView](https://raw.githubusercontent.com/babukuma/BabuPagerViewController/master/Screenshots/headerView.png)
 
-#### 3. Connect to tabView on the Storyboard if you need.
+#### 3. Connect to tabView on the Storyboard if you need to
 ![tabView](https://raw.githubusercontent.com/babukuma/BabuPagerViewController/master/Screenshots/tabView.png)
 
-#### 4. You can select the position of tabView from top or bottom.
+#### 4. You can select the position of tabView between top and bottom.
 ![tabViewBottom](https://raw.githubusercontent.com/babukuma/BabuPagerViewController/master/Screenshots/tabViewBottom.png)
 
 
@@ -81,10 +81,10 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
 
 ![IBInspectable](https://raw.githubusercontent.com/babukuma/BabuPagerViewController/master/Screenshots/IBInspectable.png)
 * tabIsBottom : if true, the page items are between header and tab
-* tabActivedTextColor : text color of actived tab view
-* tabInactivedTextColor : text color of inactived tab view
+* tabActivatedTextColor : text color of activated tab view
+* tabInactivatedTextColor : text color of inactivated tab view
 * tabFontSize : font size of tab view
-* tabUseActivedBoldText : use bold text if actived tab view
+* tabUseActivatedBoldText : use bold text if activated tab view
 
 ### 2. Method
 #### func currentIndex() -> Int
@@ -100,7 +100,7 @@ func numberOfPagerItem() -> Int {
 ```
 
 #### 2. func pagerItemViewController(index: Int) -> UIViewController
-Ask the pager item
+Asks the pager item
 ```swift
 func pagerItemViewController(index: Int) -> UIViewController {
   var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") as! UIViewController
@@ -110,7 +110,7 @@ func pagerItemViewController(index: Int) -> UIViewController {
 ```
 
 #### 3. func titleForTab(index: Int) -> String
-Ask the data source for the title of the tab
+Asks the data source for the title of the tab
 ```swift
 func titleForTab(index: Int) -> String {
   return self.titles[index]
@@ -119,7 +119,7 @@ func titleForTab(index: Int) -> String {
 
 ## protocol BabuPagerViewControllerDelegate
 #### 1. func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject)
-Called before a gesture-driven transition begins.
+Calls before a gesture-driven transition begins.
 ```swift
 func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject) {
     println("called willTransitionToViewController")
@@ -127,7 +127,7 @@ func pagerViewController(pagerViewController: BabuPagerViewController, willTrans
 ```
 
 #### 2. func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool)
-Called after a gesture-driven transition completes.
+Calls after a gesture-driven transition completes.
 ```swift
 func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool) {
     println("called didFinishAnimating")
