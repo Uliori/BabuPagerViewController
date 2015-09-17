@@ -63,19 +63,19 @@ class ViewController: BabuPagerViewController, BabuPagerViewControllerDataSource
     }
     
     func pagerItemViewController(index: Int) -> UIViewController {
-        var viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") as! UIViewController
-        println("viewController=\(viewController)")
+        let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("pageItem") 
+        print("viewController=\(viewController)")
         viewController.title = "Page \(index + 1)"
         return viewController
     }
     
     // MARK: - BabuPagerViewControllerDelegate
     func pagerViewController(pagerViewController: BabuPagerViewController, willTransitionToViewController: AnyObject) {
-        println("willTransitionToViewController")
+        print("willTransitionToViewController")
     }
     
     func pagerViewController(pagerViewController: BabuPagerViewController, didFinishAnimating finished: Bool) {
-        println("didFinishAnimating")
+        print("didFinishAnimating")
         let pageIndex = pagerViewController.currentIndex()
         self.headerView?.backgroundColor = self.headerBgColors[pageIndex]
         self.tabView?.backgroundColor = self.tabBgColor[pageIndex]

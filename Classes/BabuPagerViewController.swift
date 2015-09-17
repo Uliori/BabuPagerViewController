@@ -133,7 +133,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self._viewControllers {
             //let index = find(viewControllers, viewController) //anyArrays.indexOfObject(viewController)
-            if let index = find(viewControllers, viewController) {
+            if let index = viewControllers.indexOf(viewController) {
                 if index == 0 {
                     return nil
                 } else {
@@ -147,7 +147,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self._viewControllers {
-            if let index = find(viewControllers, viewController) {
+            if let index = viewControllers.indexOf(viewController) {
                 if index == viewControllers.count - 1 {
                     return nil
                 } else {
@@ -170,17 +170,17 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     }
     
     // MARK: - UIPageViewControllerDelegate
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if let viewControllers = self._viewControllers {
-            if let pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
-                if let currentIndex = find(viewControllers, pageViewControllers[0]) {
+            if let pageViewControllers = pageViewController.viewControllers as [UIViewController]! {
+                if let currentIndex = viewControllers.indexOf(pageViewControllers[0]) {
                     self.animateTabs(currentIndex)
                 }
             }
         }
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [AnyObject]) {
+    public func pageViewController(pageViewController: UIPageViewController, willTransitionToViewControllers pendingViewControllers: [UIViewController]) {
         if let delegate = self.delegate {
             delegate.pagerViewController(self, willTransitionToViewController: pendingViewControllers[0])
         }
@@ -211,7 +211,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
             
             for index in 1...count {
                 let x:CGFloat = CGFloat(index) * self._tabWidth
-                var frame = CGRectMake(x, 0, self._tabWidth, self.tabHeight)
+                let frame = CGRectMake(x, 0, self._tabWidth, self.tabHeight)
                 let tab = UILabel(frame: frame)
                 tab.text = self.dataSource.titleForTab(index - 1)
                 if index == 1 {
@@ -241,7 +241,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     // MARK: - BabuPagerViewController
     private func animateTabs(currentIndex:Int) {
         if let tabs = self.tabLabels {
-            var firstPosition:CGFloat = CGFloat(1 - currentIndex) * self._tabWidth
+            let firstPosition:CGFloat = CGFloat(1 - currentIndex) * self._tabWidth
             
             UIView.animateWithDuration(0.1, animations: { () -> Void in
                 //
@@ -277,8 +277,8 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         if let viewControllers = self._viewControllers, tappedView = sender.view {
             let tappedIndex = tappedView.tag - 1
             
-            if let pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
-                if let index = find(viewControllers, pageViewControllers[0]) {
+            if let pageViewControllers = pageViewController.viewControllers as [UIViewController]! {
+                if let index = viewControllers.indexOf(pageViewControllers[0]) {
                     if index > tappedIndex {
                         if let delegate = self.delegate {
                             delegate.pagerViewController(self, willTransitionToViewController: viewControllers[tappedIndex])
@@ -311,8 +311,8 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     
     /// return index of current page
     public func currentIndex() -> Int {
-        if let viewControllers = self._viewControllers, pageViewControllers = pageViewController.viewControllers as? [UIViewController] {
-            if let index = find(viewControllers, pageViewControllers[0]) {
+        if let viewControllers = self._viewControllers, pageViewControllers = pageViewController.viewControllers as [UIViewController]! {
+            if let index = viewControllers.indexOf(pageViewControllers[0]) {
                 return index
             }
         }
