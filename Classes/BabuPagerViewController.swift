@@ -75,7 +75,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
     
     // viewControllers
     var _viewControllers:[UIViewController]?
-
+    
     // MARK: - view controller lifecycle
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +105,7 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
+        self.pageViewController.automaticallyAdjustsScrollViewInsets = false
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
@@ -122,13 +123,13 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
         
         self.view.gestureRecognizers = self.pageViewController.gestureRecognizers
     }
-
+    
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
     // MARK: - UIPageViewControllerDataSource
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         if let viewControllers = self._viewControllers {
@@ -177,6 +178,9 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
                     self.animateTabs(currentIndex)
                 }
             }
+        }
+        if let delegate = self.delegate {
+            delegate.pagerViewController(self, didFinishAnimating: completed)
         }
     }
     
@@ -252,23 +256,19 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
                     
                     index++
                 }
-            }, completion: {(finished) in
-                var index = 0
-                for tab:UILabel in tabs {
-                    if index == currentIndex {
-                        tab.font = self._tabActivatedFont
-                        tab.textColor = self.tabActivatedTextColor
-                    } else {
-                        tab.font = self._tabInactivatedFont
-                        tab.textColor = self.tabInactivatedTextColor
+                }, completion: {(finished) in
+                    var index = 0
+                    for tab:UILabel in tabs {
+                        if index == currentIndex {
+                            tab.font = self._tabActivatedFont
+                            tab.textColor = self.tabActivatedTextColor
+                        } else {
+                            tab.font = self._tabInactivatedFont
+                            tab.textColor = self.tabInactivatedTextColor
+                        }
+                        
+                        index++
                     }
-                    
-                    index++
-                }
-                
-                if let delegate = self.delegate {
-                    delegate.pagerViewController(self, didFinishAnimating: finished)
-                }
             })
         }
     }
@@ -308,6 +308,50 @@ public class BabuPagerViewController: UIViewController, UIPageViewControllerData
             }
         }
     }
+    
+    public func goToPage(pageIndex:Int)
+    {
+        if let viewControllers = self._viewControllers {
+            if let pageViewControllers = pageViewController.viewControllers as [UIViewController]! {
+                if let index = viewControllers.indexOf(pageViewControllers[0]) {
+                    if index > pageIndex {
+                        if let delegate = self.delegate {
+                            delegate.pagerViewController(self, willTransitionToViewController: viewControllers[pageIndex])
+                        }
+                        
+                        self.pageViewController.setViewControllers(
+                            [viewControllers[pageIndex]],
+                            direction: .Reverse,
+                            animated: true,
+                            completion: { (finished) in
+                                self.animateTabs(pageIndex)
+                                if let delegate = self.delegate {
+                                    delegate.pagerViewController(self, didFinishAnimating:  finished)
+                                }
+                                
+                        })
+                    } else if index < pageIndex {
+                        if let delegate = self.delegate {
+                            delegate.pagerViewController(self, willTransitionToViewController: viewControllers[pageIndex])
+                        }
+                        
+                        self.pageViewController.setViewControllers(
+                            [viewControllers[pageIndex]],
+                            direction: .Forward,
+                            animated: true,
+                            completion: { (finished) in
+                                self.animateTabs(pageIndex)
+                                if let delegate = self.delegate {
+                                    delegate.pagerViewController(self, didFinishAnimating:  finished)
+                                }
+                        })
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     
     /// return index of current page
     public func currentIndex() -> Int {
